@@ -1,0 +1,137 @@
+* {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier Prime', monospace;
+  background-image: url('/static/images/backgroundpantai.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 40px 80px;
+}
+
+.navbar {
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  justify-content: end;
+  gap: 90px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  font-size: 25px;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  padding: 5px 15px;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 13%;
+  width: 75%;
+  height: 3px;
+  background-color: white;
+  border-radius: 999px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.navbar a.active::after,
+.navbar a:hover::after {
+  opacity: 1;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  padding: 90px 80px 40px 50px;
+  color: white;
+}
+
+.hero-tagline {
+  color: #2563eb;
+  font-weight: 800;
+  font-size: 25px;
+  letter-spacing: 2px;
+  margin-top: 100px;
+  margin-bottom: 0px;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-title {
+  font-size: 80px;
+  font-weight: 1000;
+  color: rgb(249, 252, 255);
+  line-height: 1.2;
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.hero-description {
+  font-size: 17px;
+  font-weight: 600;
+  color: rgb(239, 242, 245);
+  line-height: 1.5;
+  max-width: 100%;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero-button {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 800;
+  padding: 20px 34px;
+  border-radius: 999px;
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-family: 'Courier Prime', monospace;
+}
+
+.hero-button:hover {
+  background-color: #1e40af;
+}
