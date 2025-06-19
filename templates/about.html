@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About</title>
+    <link rel="stylesheet" href="/static/about.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="sidebar" aria-label="Sidebar Navigation">
+        <div class="section">
+          <p class="section-title">Sistem Monitoring Aktivitas Akuarium</p>
+          <ul>
+            <li><a href="#deskripsi">Deskripsi Singkat</a></li>
+            <li><a href="#alur">Alur Komunikasi Antar Komponen</a></li>
+            <li><a href="#skema">Skema Rangkaian</a></li>
+            <li><a href="#flowchart">Flowchart</a></li>
+          </ul>
+        </div>
+        <div class="back-button-container">
+          <li><a href="/" class="back-button">Kembali</a></li>
+        </div>
+      </nav>
+      <main class="main-content">
+        <h1>Sistem Monitoring Aktivitas Akuarium</h1>
+        <section id="deskripsi">
+          <h2>Deskripsi Singkat</h2>
+          <p class="justify">
+            Alat ini menggunakan ESP32 sebagai perangkat utama yang mengendalikan seluruh sistem. Sensor DS18B20 digunakan untuk mengambil input suhu air pada akuarium.
+            Data suhu yang diperoleh kemudian diproses oleh ESP32 untuk menentukan kapan sistem perlu merespons, misalnya dalam hal pengaturan lingkungan atau pemberian pakan.
+            Untuk mekanisme pemberian pakan, digunakan servo S360 yang berfungsi menggerakkan penutup tempat makan ikan.
+            Selain itu, alat ini juga dilengkapi dengan LED UV yang digunakan untuk membantu mengendalikan pertumbuhan bakteri di dalam akuarium agar kualitas air tetap terjaga.
+          </p>
+        </section>
+        <section id="alur">
+          <h2>Alur Komunikasi Antar Komponen</h2>
+          <p class="justify">
+            Sistem ini menggunakan ESP32 sebagai pengendali utama untuk mengontrol perangkat keras seperti sensor suhu DS18B20, lampu LED UV, dan servo motor.
+            ESP32 bertugas membaca data dari sensor serta mengendalikan aktuator.
+          </p>
+          <div class="space"></div>
+          <p class="justify">
+            Agar data dari ESP32 bisa diakses melalui web, digunakan Flask sebagai web framework berbasis Python.
+            Flask berperan sebagai jembatan komunikasi antara ESP32 dan antarmuka web.
+            Melalui Flask, data yang dikirim dari ESP32 bisa diteruskan ke dashboard web, dan perintah dari pengguna di web juga bisa diteruskan ke ESP32.
+          </p>
+          <div class="space"></div>
+          <p class="justify">
+            Sementara itu, Web Dashboard merupakan antarmuka pengguna berbasis web yang menampilkan data secara otomatis
+            (seperti suhu dari sensor) dan menyediakan fitur kontrol manual, misalnya untuk menyalakan LED UV atau menggerakkan servo.
+          </p>
+          <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+            <thead>
+              <tr>
+                <th>Komponen</th>
+                <th>Endpoint</th>
+                <th>Method</th>
+                <th>Penjelasan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ESP32 → Flask</td>
+                <td>/post-data</td>
+                <td>POST</td>
+                <td>ESP32 mengirim data suhu (dari sensor DS18B20) ke server Flask setiap 1 jam.</td>
+              </tr>
+              <tr>
+                <td>Web Dashboard → Flask</td>
+                <td>/get-data</td>
+                <td>GET</td>
+                <td>Dashboard meminta data suhu terbaru dari server Flask dan menampilkan suhu <i>real-time</i> dan grafik histori per hari.</td>
+              </tr>
+              <tr>
+                <td>Web Dashboard → Flask</td>
+                <td>/send-control</td>
+                <td>POST</td>
+                <td>Dashboard mengirim perintah kontrol ke ESP32 (ON/OFF lampu/servo).</td>
+              </tr>
+              <tr>
+                <td>Flask → ESP32</td>
+                <td>/control-status</td>
+                <td>GET</td>
+                <td>ESP32 mengecek apakah ada perintah baru dari user via dashboard.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="justify">
+            <p class="center">ESP32 ⇆ Flask ⇆ Web</p>
+            ESP32 : Mengontrol hardware; Sensor Suhu DS18B20, LED UV, dan Servo Motor.
+            <br />
+            Flask : Menjadi jembatan komunikasi antara ESP32 dan Web Dashboard.
+            <br />
+            Web Dashboard : Menampilkan data otomatis dan menyediakan kontrol manual.
+          </p>
+        </section>
+        <section id="skema">
+          <h2>Skema Rangkaian</h2>
+          <div class="circuit">
+            <img src="/static/images/rangkaian.png" />
+          </div>
+        </section>
+        <section id="flowchart">
+          <h2>Flowchart</h2>
+          <div class="flowchart">
+            <img src="/static/images/flowchart.png" />
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

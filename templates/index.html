@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="static/index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="navbar">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About</a>
+        <a href="/monitoring">Monitoring</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </nav>
+    <header class="hero-section">
+        <p class="hero-tagline">LET'S,</p>
+        <h1 class="hero-title">Monitor Your System</h1>
+        <p class="hero-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+        </p>
+        <a href="{{ url_for('logout') }}" class="hero-button">Logout</a>
+    </header>
+</body>
+</html>
+
